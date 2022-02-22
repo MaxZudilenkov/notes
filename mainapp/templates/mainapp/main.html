@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
- {% block title %}
-       <title>Главная страница</title>
+{% block title %}
+    <title>Главная страница</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <p>
+        ВЕСЕЛЫЕ ЗАМЕТКИ
+    </p>
+
+    <p>
+        Количество выших заметок:
+        {{ all_user_notes.count }}
+    </p>
+
 {% endblock %}

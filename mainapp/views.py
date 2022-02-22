@@ -44,4 +44,7 @@ def add_note(request):
 
 
 def show_main_page(request):
-    return render(request, 'mainapp/main.html')
+    user_id = request.user.pk
+    all_user_notes = Note.objects.filter(user=user_id)
+    context = {'all_user_notes': all_user_notes}
+    return render(request, 'mainapp/main.html', context)
