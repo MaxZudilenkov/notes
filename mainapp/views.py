@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from mainapp.forms import RegisterUserForm, UserLoginForm, AddNoteForm
 from mainapp.models import NoteUser, Note
 
@@ -42,6 +42,13 @@ def add_note(request):
     context = {'form': form}
     return render(request, 'mainapp/add_note.html', context)
 
+
+class NotesListView(ListView):
+    template_name = 'mainapp/notes_list.html'
+    context_object_name = 'notes'
+
+    def get_queryset(self):
+        return Note.objects.filter(user=self.request.user.pk)
 
 def show_main_page(request):
     user_id = request.user.pk

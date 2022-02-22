@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Список заметок</title>
+{% endblock %}
+
+{% block content %}
+
+    {% for note in notes %}
+
+        <p>
+            {{ note.text }}
+            {{ note.published_at }}
+        </p>
+
+        
+    {% endfor %}
+
+{% endblock %}
+
