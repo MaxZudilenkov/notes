@@ -1,4 +1,4 @@
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -15,6 +15,16 @@ class RegisterUserView(CreateView):
     template_name = 'mainapp/registration.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('main')
+
+    def form_valid(self, form):
+        # Метод для автоматического входа после регистрации
+        valid_form = super().form_valid(form)
+        user = authenticate(
+            email=form.cleaned_data.get('email'),
+            password=form.cleaned_data.get('password1'), )
+        print(user)
+        login(self.request, user)
+        return valid_form
 
 
 class UserLoginView(LoginView):
