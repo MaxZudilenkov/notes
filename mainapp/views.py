@@ -1,5 +1,6 @@
+from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.contrib.auth.models import User
@@ -24,6 +25,12 @@ class UserLoginView(LoginView):
     authentication_form = UserLoginForm
     template_name = 'mainapp/login.html'
     success_url = reverse_lazy('main')
+
+
+def user_logout(request):
+    # Метод для выхода из системы
+    logout(request)
+    return redirect('main')
 
 
 def show_main_page(request):
