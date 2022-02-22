@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
 
- {% block title %}
-       <title>Регистрация</title>
+{% block title %}
+    <title>Регистрация</title>
 {% endblock %}
 
 {% block content %}
 
-<form method="POST">
-    {% csrf_token %}
+    {% if user.is_authenticated %}
 
-    {{ form.as_p }}
+        <p>Вы уже зарегистрированы</p>
 
-   <button>Зарегистрироваться</button>
+    {% else %}
 
-</form>
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button>Зарегистрироваться</button>
+
+        </form>
+
+    {% endif %}
 
 {% endblock %}

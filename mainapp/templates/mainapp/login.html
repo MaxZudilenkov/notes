@@ -6,10 +6,21 @@
 
 {% block content %}
 
+    {% if user.is_authenticated %}
+
+    <p>Вы уже авторизованы</p>
+
+    {% else %}
+
     <form method="POST">
+
         {% csrf_token %}
         {{ form.as_p }}
         <button>Вход</button>
+
     </form>
+
+    {% endif %}
+
 
 {% endblock %}
