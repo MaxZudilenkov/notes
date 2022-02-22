@@ -1,15 +1,12 @@
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-
-# Create your views here.
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-
-from mainapp.forms import RegisterUserForm, UserLoginForm
-from mainapp.models import NoteUser
+from mainapp.forms import RegisterUserForm, UserLoginForm, AddNoteForm
+from mainapp.models import NoteUser, Note
 
 
 class RegisterUserView(CreateView):
@@ -31,6 +28,19 @@ def user_logout(request):
     # Метод для выхода из системы
     logout(request)
     return redirect('main')
+
+
+def add_note(request):
+    # Метод для добавления заметки
+    if request.method == 'POST':
+        form = AddNoteForm(request.POST)
+        if form.is_valid():
+            form.save(commit=False)
+            if int(request.POST.get('user')) == request.user.pk:
+                form.save()
+    form = AddNoteForm(initial={'user': request.user})
+    context = {'form': form}
+    return render(request, 'mainapp/add_note.html', context)
 
 
 def show_main_page(request):

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Добавление заметки</title>
+{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+
+        <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Добавить заметку</button>
+
+    {% endif %}
+
+{% endblock %}
+
+</form>

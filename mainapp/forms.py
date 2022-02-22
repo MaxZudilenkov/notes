@@ -1,10 +1,8 @@
-from cProfile import label
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
-from mainapp.models import NoteUser
+from mainapp.models import NoteUser, Note
 
 
 class RegisterUserForm(UserCreationForm):
@@ -23,3 +21,10 @@ class RegisterUserForm(UserCreationForm):
 
 class UserLoginForm(AuthenticationForm):
     password = forms.CharField(label='Пароль')
+
+
+class AddNoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ('text', 'user')
+        widgets = {'user': forms.HiddenInput(), }
