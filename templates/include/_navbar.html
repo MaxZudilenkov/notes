@@ -1,6 +1,6 @@
 {% if user.is_authenticated %}
 
-    <a href="">На главную</a>
+    <a href="{% url 'main' %}">На главную</a>
     <a href="">Добавить заметку</a>
     <a href="">Список заметок</a>
     <a href="{% url 'logout' %}">Выйти</a>
@@ -8,9 +8,9 @@
 
 {% else %}
 
-    <a href="">На главную</a>
-    <a href="">Авторизация</a>
-    <a href="">Регистрация</a>
+    <a href="{% url 'main' %}">На главную</a>
+    <a href="{% url 'login' %}">Авторизация</a>
+    <a href="{% url 'registration' %}">Регистрация</a>
 
 
 {% endif %}
