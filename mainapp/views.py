@@ -7,11 +7,12 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from mainapp.forms import RegisterUserForm
+from mainapp.models import NoteUser
 
 
 class RegisterUserView(CreateView):
     # Класс для регистрации пользователей
-    model = User
+    model = NoteUser
     template_name = 'mainapp/registration.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('main')
