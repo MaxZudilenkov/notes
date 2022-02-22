@@ -44,13 +44,16 @@ def add_note(request):
 
 
 class NotesListView(ListView):
+    # Класс для отображения заметок пользователя
     template_name = 'mainapp/notes_list.html'
     context_object_name = 'notes'
 
     def get_queryset(self):
         return Note.objects.filter(user=self.request.user.pk)
 
+
 def show_main_page(request):
+    # Метод для отображения главной страницы
     user_id = request.user.pk
     all_user_notes = Note.objects.filter(user=user_id)
     context = {'all_user_notes': all_user_notes}

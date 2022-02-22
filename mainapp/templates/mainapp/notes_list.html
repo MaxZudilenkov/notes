@@ -6,15 +6,19 @@
 
 {% block content %}
 
-    {% for note in notes %}
+    {% if request.user.is_authenticated %}
 
-        <p>
-            {{ note.text }}
-            {{ note.published_at }}
-        </p>
+        {% for note in notes %}
 
-        
-    {% endfor %}
+            <p>
+                {{ note.text }}
+                {{ note.published_at }}
+            </p>
+
+
+        {% endfor %}
+
+    {% endif %}
 
 {% endblock %}
 
