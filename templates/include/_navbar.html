@@ -1,7 +1,7 @@
 {% if user.is_authenticated %}
 
     <a href="{% url 'main' %}">На главную</a>
-    <a href="">Добавить заметку</a>
+    <a href="{% url 'add_note' %}">Добавить заметку</a>
     <a href="">Список заметок</a>
     <a href="{% url 'logout' %}">Выйти</a>
 
