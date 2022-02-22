@@ -7,15 +7,18 @@
 
 {% block content %}
 
-    <p>
-        ВЕСЕЛЫЕ ЗАМЕТКИ
-    </p>
-
     {% if request.user.is_authenticated %}
         <p>
             Количество выших заметок:
             {{ all_user_notes.count }}
         </p>
+
+    {% else %}
+
+        <p>
+            ВЕСЕЛЫЕ ЗАМЕТКИ
+        </p>
+
     {% endif %}
 
 {% endblock %}
