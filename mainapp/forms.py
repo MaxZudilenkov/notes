@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
 from mainapp.models import NoteUser, Note
 
 
@@ -25,4 +26,9 @@ class AddNoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ('text', 'user')
-        widgets = {'user': forms.HiddenInput(), }
+
+    def clean(self):
+        data = self.cleaned_data
+        if len(data['text']) == 0:
+            raise forms.ValidationError('Вы не можете сохранить пустую заметку')
+        return data

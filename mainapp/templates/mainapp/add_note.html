@@ -11,9 +11,17 @@
         <form method="post">
         {% csrf_token %}
 
+        {% if form.errors %}
+
+           {{ text.errors }}
+
+           {% endif %}
+
         {{ form.as_p }}
 
         <button type="submit">Добавить заметку</button>
+
+        </form>
 
     {% else %}
 
@@ -21,8 +29,5 @@
 
     {% endif %}
 
-
-
 {% endblock %}
 
-</form>
