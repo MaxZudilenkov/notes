@@ -26,6 +26,7 @@ class AddNoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ('text', 'user')
+        widgets = {'user': forms.HiddenInput(), }
 
     def clean(self):
         data = self.cleaned_data
