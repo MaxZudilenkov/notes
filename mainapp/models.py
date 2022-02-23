@@ -8,6 +8,9 @@ class Note(models.Model):
     text = models.TextField(verbose_name='Текст')
     published_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время публикации')
 
+    class Meta:
+        ordering = ['-published_at']
+
 
 class NoteUser(AbstractUser):
     # Модель пользователя

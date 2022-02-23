@@ -48,7 +48,7 @@ def add_note(request):
             form.save(commit=False)
             if int(request.POST.get('user')) == request.user.pk:
                 form.save()
-                return redirect('main')
+                return redirect('notes_list')
     else:
         form = AddNoteForm(initial={'user': request.user})
     context = {'form': form}
