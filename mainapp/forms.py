@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 
 from mainapp.models import NoteUser, Note
 
@@ -17,6 +18,13 @@ class RegisterUserForm(UserCreationForm):
         'password_mismatch': ('Введенные пароли не совпадают'),
     }
 
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        user = NoteUser.objects.filter(email__iexact=email)
+        if user:
+            raise forms.ValidationError('Такой адрес электронной потчы уже зарегистрирован')
+        return email.lower()
+
 
 class UserLoginForm(AuthenticationForm):
     password = forms.CharField(label='Пароль')
@@ -31,5 +39,5 @@ class AddNoteForm(forms.ModelForm):
     def clean(self):
         data = self.cleaned_data
         if len(data['text']) == 0:
-            raise forms.ValidationError('Вы не можете сохранить пустую заметку')
+            raise forms.ValidationError('Вы не можете добавить пустую заметку')
         return data
