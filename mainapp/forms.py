@@ -29,6 +29,14 @@ class RegisterUserForm(UserCreationForm):
 class UserLoginForm(AuthenticationForm):
     password = forms.CharField(label='Пароль')
 
+    error_messages = {
+        'invalid_login': (
+            "Ошибка в адресе электронной почты или пароле"
+
+        ),
+
+    }
+
 
 class AddNoteForm(forms.ModelForm):
     class Meta:
