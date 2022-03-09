@@ -6,8 +6,8 @@ from mainapp.models import NoteUser, Note
 
 class RegisterUserForm(UserCreationForm):
     email = forms.EmailField(label='Электронная почта')
-    password1 = forms.CharField(label='Введите пароль')
-    password2 = forms.CharField(label='Повторите пароль')
+    password1 = forms.CharField(label='Введите пароль', widget=forms.PasswordInput())
+    password2 = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput())
 
     class Meta:
         model = NoteUser
@@ -21,12 +21,12 @@ class RegisterUserForm(UserCreationForm):
         email = self.cleaned_data['email']
         user = NoteUser.objects.filter(email__iexact=email)
         if user:
-            raise forms.ValidationError('Такой адрес электронной потчы уже зарегистрирован')
+            raise forms.ValidationError('Такой адрес электронной почты уже зарегистрирован')
         return email.lower()
 
 
 class UserLoginForm(AuthenticationForm):
-    password = forms.CharField(label='Пароль')
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput())
 
     error_messages = {
         'invalid_login': (
