@@ -1,0 +1,10 @@
+.main {
+    background: red;
+    font-size: 40px;
+    position: relative;
+    text-align: center;
+    width: 80vw;
+    height: 6vw;
+    top: 20%;
+    left: 10%;
+}

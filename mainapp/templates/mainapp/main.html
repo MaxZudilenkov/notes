@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+
 {% block title %}
     <title>Главная страница</title>
 {% endblock %}
@@ -15,9 +18,9 @@
 
     {% else %}
 
-        <p>
-            ВЕСЕЛЫЕ ЗАМЕТКИ
-        </p>
+        <div class="main">ВЕСЕЛЫЕ ЗАМЕТКИ</div>
+
+
 
     {% endif %}
 
