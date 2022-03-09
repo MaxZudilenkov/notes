@@ -1,7 +1,6 @@
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
@@ -22,7 +21,6 @@ class RegisterUserView(CreateView):
         user = authenticate(
             email=form.cleaned_data.get('email'),
             password=form.cleaned_data.get('password1'), )
-        print(user)
         login(self.request, user)
         return valid_form
 

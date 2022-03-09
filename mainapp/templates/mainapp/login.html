@@ -8,19 +8,27 @@
 
     {% if user.is_authenticated %}
 
-    <p>Вы уже авторизованы</p>
+        <p>Вы уже авторизованы</p>
 
     {% else %}
 
-    <form method="POST">
+        <form method="POST">
 
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>Вход</button>
+            {% csrf_token %}
 
-    </form>
+            <div id="feedback-form" style="margin-top: 10%">
+
+                <h2 class="header">Вход в систему</h2>
+
+                <div>
+
+                    {{ form.as_p }}
+                </div>
+
+                <button type="submit">Войти</button>
+            </div>
+        </form>
 
     {% endif %}
-
 
 {% endblock %}

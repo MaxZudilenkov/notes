@@ -12,14 +12,21 @@
 
     {% else %}
 
-        <form method="POST">
+       <form method="POST">
 
             {% csrf_token %}
 
-            {{ form.as_p }}
+            <div id="feedback-form" style="margin-top: 10%">
 
-            <button>Зарегистрироваться</button>
+                <h2 class="header">Регистрация</h2>
 
+                <div>
+
+                    {{ form.as_p }}
+                </div>
+
+                <button type="submit">Регистрация</button>
+            </div>
         </form>
 
     {% endif %}

@@ -11,10 +11,11 @@
 {% block content %}
 
     {% if request.user.is_authenticated %}
-        <p>
+        <div class="counter">
             Количество выших заметок:
             {{ all_user_notes.count }}
-        </p>
+        </div>
+
 
     {% else %}
 

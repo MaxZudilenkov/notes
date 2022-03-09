@@ -10,17 +10,21 @@
 
         {% for note in notes %}
 
-            <p>
-                {{ note.text }}
-                {{ note.published_at }}
-            </p>
+
+            <div class="card" style="width: 50%; margin-bottom: 20px; margin-left:30%;background: gainsboro">
+                <div class="card-body">
+                    <h5 class="card-title"> {{ note.published_at }}</h5>
+                    <p class="card-text">{{ note.text }}</p>
+
+                </div>
+            </div>
 
 
         {% endfor %}
 
     {% else %}
 
-       <p>Вы не можете просматривать эту страницу. Выполните вход в систему.</p>
+        <p>Вы не можете просматривать эту страницу. Выполните вход в систему.</p>
 
     {% endif %}
 
